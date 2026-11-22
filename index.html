@@ -1,1 +1,48 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Schedule and Airport Weather</title>
+</head>
+<body>
+    <header>
+        <h1>Flight Schedule and Airport Weather</h1>
+        <p>Find your flight and check the weather at your departure and arrival airports.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Search by flight number</h2>
+
+            <form id="flight-form">
+                <label for="flight-number">Flight number</label>
+                <input type="text" id="flight-number" name="flight"
+                       placeholder="e.g. LO3815" required>
+                <button type="submit" disabled>Find flight</button>
+            </form>
+
+            <div id="flight-results" aria-live="polite">
+                <!-- Show the flight schedule and weather at both airports here. -->
+            </div>
+        </section>
+
+        <section>
+            <h2>Search by airport</h2>
+
+            <form id="airport-form">
+                <label for="airport-code">Four-letter airport ICAO code</label>
+                <input type="text" id="airport-code" name="airport"
+                       placeholder="e.g. EPGD" maxlength="4"
+                       pattern="[A-Za-z]{4}" required>
+                <button type="submit" disabled>Show weather</button>
+            </form>
+
+            <div id="airport-results" aria-live="polite">
+                <!-- Show the observation time, temperature, wind, and visibility here. -->
+            </div>
+        </section>
+    </main>
+</body>
+</html>
