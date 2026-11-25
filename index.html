@@ -1,20 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight Schedule and Airport Weather</title>
+    <title>Flight Finder and Airport Weather</title>
 </head>
 <body>
     <header>
-        <h1>Flight Schedule and Airport Weather</h1>
-        <p>Find your flight and check the weather at your departure and arrival airports.</p>
+        <h1>Flight Finder and Airport Weather</h1>
+        <p>Find your flight and check the weather at either end of your journey.</p>
     </header>
 
     <main>
         <section>
-            <h2>Search by flight number</h2>
+            <h2>Find a flight by number</h2>
 
             <form id="flight-form">
                 <label for="flight-number">Flight number</label>
@@ -22,26 +21,57 @@
                        placeholder="e.g. LO3815" required>
                 <button type="submit" disabled>Find flight</button>
             </form>
-
-            <div id="flight-results" aria-live="polite">
-                <!-- Show the flight schedule and weather at both airports here. -->
-            </div>
         </section>
 
         <section>
-            <h2>Search by airport</h2>
+            <h2>Find a flight by airport</h2>
+            <p>If you don’t know your flight number, browse the airport’s departures or arrivals.</p>
 
             <form id="airport-form">
-                <label for="airport-code">Four-letter airport ICAO code</label>
+                <label for="airport-code">Airport ICAO code</label>
                 <input type="text" id="airport-code" name="airport"
                        placeholder="e.g. EPGD" maxlength="4"
                        pattern="[A-Za-z]{4}" required>
-                <button type="submit" disabled>Show weather</button>
-            </form>
 
-            <div id="airport-results" aria-live="polite">
-                <!-- Show the observation time, temperature, wind, and visibility here. -->
-            </div>
+                <label for="flight-direction">Show flights</label>
+                <select id="flight-direction" name="direction">
+                    <option value="departures">Departing from this airport</option>
+                    <option value="arrivals">Arriving at this airport</option>
+                </select>
+
+                <button type="submit" disabled>Show flights</button>
+            </form>
+        </section>
+
+        <section id="flight-list" hidden>
+            <h2>Select your flight</h2>
+            <ul id="matching-flights">
+                <!-- JavaScript will add a button for each matching flight.
+                     Each button will show the time, route, and flight number. -->
+            </ul>
+        </section>
+
+        <section id="flight-details" hidden>
+            <h2>Flight details</h2>
+            <p>Flight number: <span id="selected-flight-number"></span></p>
+
+            <h3>Departure</h3>
+            <p>Airport: <span id="departure-airport"></span></p>
+            <p>Scheduled departure: <span id="departure-time"></span></p>
+
+            <details>
+                <summary>Check weather at the departure airport</summary>
+                <p id="departure-weather"></p>
+            </details>
+
+            <h3>Arrival</h3>
+            <p>Airport: <span id="arrival-airport"></span></p>
+            <p>Scheduled arrival: <span id="arrival-time"></span></p>
+
+            <details>
+                <summary>Check weather at the arrival airport</summary>
+                <p id="arrival-weather"></p>
+            </details>
         </section>
     </main>
 </body>
